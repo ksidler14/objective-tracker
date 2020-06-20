@@ -1,6 +1,28 @@
 import React, {useState} from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, Grid, TextField, MenuItem, DialogContentText, Select } from '@material-ui/core';
-import Add from '@material-ui/icons/Add';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, Grid, TextField, MenuItem, DialogContentText, Select, withStyles } from '@material-ui/core';
+import Add from '@material-ui/icons/AddCircle';
+
+const style = (theme) => {
+
+    return ({
+        dialogTitle: {
+            backgroundColor: theme.palette.secondary.dark,
+            display: 'flex',
+            textAlign: 'center',
+            justifyContent: 'center'
+        },
+        dialogBody: {
+            backgroundColor: theme.palette.secondary.main
+        },
+        dialogActions: {
+            backgroundColor: theme.palette.secondary.dark
+        },
+        text: {
+            color: theme.palette.secondary.contrastText
+        }
+    });
+
+}
 
 const AddObjectiveDialog = (props) => {
 
@@ -8,7 +30,7 @@ const AddObjectiveDialog = (props) => {
     const [dialogObjectiveName, setDialogObjectiveName] = useState("");
     const [dialogRequiredToComplete, setDialogRequiredToComplete] = useState(0);
 
-    const {addObjective} = props;
+    const {addObjective, classes} = props;
 
     const openDialog = () => {
         setDialogOpen(true);
@@ -39,13 +61,13 @@ const AddObjectiveDialog = (props) => {
                 <Add />
             </IconButton>
             <Dialog open={dialogOpen} onEscapeKeyDown={closeDialog}>
-                <DialogTitle>
+                <DialogTitle className={classes.dialogTitle}>
                     Add Objective
                 </DialogTitle>
-                <DialogContent>
+                <DialogContent className={classes.dialogBody}>
                     <Grid container spacing={1}>
                         <Grid item xs={6}>
-                            <DialogContentText>
+                            <DialogContentText className={classes.text}>
                                 Objective Name
                             </DialogContentText>
                         </Grid>
@@ -53,7 +75,7 @@ const AddObjectiveDialog = (props) => {
                             <TextField onChange={handleObjectiveNameChange} />
                         </Grid>
                         <Grid item xs={6}>
-                            <DialogContentText>
+                            <DialogContentText className={classes.text}>
                                 Required Times To Complete
                             </DialogContentText>
                         </Grid>
@@ -68,7 +90,7 @@ const AddObjectiveDialog = (props) => {
                         </Grid>
                     </Grid>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions className={classes.dialogActions}>
                     <Button onClick={closeDialog}>
                         Cancel
                     </Button>
@@ -82,4 +104,4 @@ const AddObjectiveDialog = (props) => {
 
 }
 
-export default AddObjectiveDialog;
+export default withStyles(style)(AddObjectiveDialog);
