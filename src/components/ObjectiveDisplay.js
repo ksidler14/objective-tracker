@@ -41,15 +41,15 @@ const ObjectiveDisplay = () => {
 
     const removeCompletedObjective = (index) => {
 
-        let objectiveCompleted = objectives[index];
+        let objectiveRemoved = objectives[index];
 
-        if(objectiveCompleted.completedObjectives !== 0) {
+        if(objectiveRemoved.completedObjectives !== 0) {
 
-            objectiveCompleted.completedObjectives = objectiveCompleted.completedObjectives - 1;
+            objectiveRemoved.completedObjectives = objectiveRemoved.completedObjectives - 1;
 
             const newArray = objectives.slice(0);
 
-            newArray[index] = objectiveCompleted;
+            newArray[index] = objectiveRemoved;
 
             setObjectives(newArray);
 

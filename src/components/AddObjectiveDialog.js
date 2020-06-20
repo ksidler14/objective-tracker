@@ -15,6 +15,8 @@ const AddObjectiveDialog = (props) => {
     }
 
     const closeDialog = () => {
+        setDialogObjectiveName("");
+        setDialogRequiredToComplete(0);
         setDialogOpen(false);
     }
 
@@ -70,7 +72,7 @@ const AddObjectiveDialog = (props) => {
                     <Button onClick={closeDialog}>
                         Cancel
                     </Button>
-                    <Button onClick={submitObjective}>
+                    <Button onClick={submitObjective} disabled={dialogObjectiveName === "" || dialogRequiredToComplete === 0}>
                         Add
                     </Button>
                 </DialogActions>
